@@ -8,34 +8,33 @@
 </head>
 <body>
   <div id="calculator-container">
-    <div id="display"></div>
-
-    <div id="numbers-container">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>0</button>
+    <div id="display">
+      <div id="working"></div>
+      <div id="current-value"></div>
     </div>
-    <div id="zero-equals-container"></div>
-      <button>=</button>
-    </div>
-
-    <div id="operators-container">
-      <button>&plus;</button>
-      <button>&minus;</button>
-      <button>&divide;</button>
-      <button>&times;</button>
-    </div>
-
-    <div>
-      <button>C</button>
-    </div>
+   
+      <div id="digits-container"> 
+        <div id="empty"></div>
+        <div id="empty"></div>
+        <button id="ce">CE</button>
+        <button id="c" class="clear-button">C</button>
+        <button value="7">7</button>
+        <button>8</button>
+        <button>9</button>
+        <button id="divide" class="operator">&divide;</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button id="multiply" class="operator">&times;</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button id="minus" class="operator">&minus;</button>
+        <button>0</button>
+        <button >.</button>
+        <button id="equals" class="operator">&equals;</button>
+        <button id="plus" class="operator">&plus;</button>
+      </div>
   </div>
 </body>
 </html>
