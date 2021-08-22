@@ -28,24 +28,37 @@ function operate(a,b,operator) {
 }
 
 var a, b, operator, answerShowing;
+var neg = false;
+var dotOn = false;
 
 buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
+
     button.addEventListener("click", () => {
-      if (button.id == "ce") {
+        currentValue = document.getElementById("current-value").textContent
+        if (button.id == "ce") {
           clearDisplay();
-      } else if (button.id == "c") {
+        } else if (button.id == "c") {
           clearDisplay();
           clearWorking();
-      } else if (button.classList == "operator") {
-          if (a) {
-            workingOut(document.getElementById("current-value").textContent, button.id)
-          } else {
-              a = document.getElementById("current-value").textContent
-              operator = button.id
-              clearDisplay();
-          }
-      } else{
+        } else if (button.id == "dot") {
+            if (dotOn) {
+                console.log("dot off")
+                return
+            } else {
+                console.log("dot on")
+                dotOn = true;
+                document.getElementById("current-value").textContent += `${button.textContent}`;
+            }
+        } else if (button.classList == "operator") {
+            if (a) {
+            workingOut(currentValue, button.id)
+            } else {
+                a = currentValue;
+                operator = button.id;
+                clearDisplay();
+            }
+          } else{
           if (answerShowing) {
               clearDisplay()
               answerShowing=false;
@@ -64,10 +77,11 @@ function workingOut(b, o) {
         a = subtract(a,b);
         console.log(a)
     } else if (operator == "divide") {
-        if (b==0) {
-            a = "CANNOT DIVIDE BY ZERO"
-            displayAnswer();
+        if (b == 0 ) {
+            document.getElementById("current-value").textContent = "CANNOT DIVIDE BY ZERO"
+            clearWorking()
         } else {
+         console.log("divided")
         a = divide(a,b);
         }
     } else if (operator == "multiply") {
@@ -85,14 +99,16 @@ function workingOut(b, o) {
 
 function displayAnswer() {
     answerShowing = true
-    clearWorking()
+    a = Math.round(a * 1000)/1000;
     document.getElementById("current-value").textContent = a;
     console.log(`ans is ${a}`)
     a= null;
+    dotOn = false;
+    clearWorking()
 }
 
 function clearWorking () {
-    document.getElementById("working").textContent = ""
+    a = null;
 }
 function clearDisplay() {
     document.getElementById("current-value").textContent = ""
